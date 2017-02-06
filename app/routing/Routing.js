@@ -13,6 +13,18 @@ var Routing;
                     controller: 'PortfolioController',
                     controllerAs: 'vm'
                 });
+                _this.$stateProvider.state('about', {
+                    url: '/about',
+                    templateUrl: 'app/about/About.html',
+                    controller: 'AboutController',
+                    controllerAs: 'vm'
+                });
+                _this.$stateProvider.state('contact', {
+                    url: '/contact',
+                    templateUrl: 'app/contact/Contact.html',
+                    controller: 'ContactController',
+                    controllerAs: 'vm'
+                });
                 _this.$urlRouteProvider.otherwise('/');
             };
             this.$stateProvider = $stateProvider;

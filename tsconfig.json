@@ -9,6 +9,8 @@
     },
     "files": [
         "app/portfolio/PortfolioController.ts",
+        "app/about/AboutController.ts",
+        "app/contact/ContactController.ts",
         "app/routing/Routing.ts",
         "js/scripts/typings/angular.d.ts",
         "js/scripts/typings/angular-route.d.ts",

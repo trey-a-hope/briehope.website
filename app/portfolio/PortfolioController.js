@@ -5,9 +5,6 @@ var App;
         var PortfolioController = (function () {
             function PortfolioController($scope) {
                 this.$scope = $scope;
-                this.test = function () {
-                    alert("Testing");
-                };
                 this.name = "Trey";
             }
             PortfolioController.$inject = ['$scope'];

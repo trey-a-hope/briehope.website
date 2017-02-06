@@ -17,6 +17,8 @@
         <script src="app/briehope.js"></script>
         <!-- Controllers -->
         <script src="app/portfolio/PortfolioController.js"></script>
+        <script src="app/about/AboutController.js"></script>
+        <script src="app/contact/ContactController.js"></script>
         <!-- Routing -->
         <script src="app/routing/Routing.js"></script>
 
@@ -34,17 +36,17 @@
                 </div>
                 <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                     <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                        <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
-                        <a class="mdl-navigation__link" href="about.html">About</a>
-                        <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                        <a class="mdl-navigation__link" ui-sref="main" ui-sref-active="is-active">Portfolio</a>
+                        <a class="mdl-navigation__link" ui-sref="about" ui-sref-active="is-active">About</a>
+                        <a class="mdl-navigation__link" ui-sref="contact" ui-sref-active="is-active">Contact</a>
                     </nav>
                 </div>
             </header>
             <div class="mdl-layout__drawer mdl-layout--small-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
-                    <a class="mdl-navigation__link" href="about.html">About</a>
-                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                    <a class="mdl-navigation__link" ui-sref="main" ui-sref-active="is-active">Portfolio</a>
+                    <a class="mdl-navigation__link" ui-sref="about" ui-sref-active="is-active">About</a>
+                    <a class="mdl-navigation__link" ui-sref="contact" ui-sref-active="is-active">Contact</a>
                 </nav>
             </div>
             <main class="mdl-layout__content">
