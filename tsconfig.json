@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "commonjs",
+        "declaration": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "sourceMap": true
+    },
+    "files": [
+        "app/portfolio/PortfolioController.ts",
+        "app/routing/Routing.ts",
+        "js/scripts/typings/angular.d.ts",
+        "js/scripts/typings/angular-route.d.ts",
+        "js/scripts/typings/angular-ui-router.d.ts",
+        "js/scripts/typings/jquery.d.ts"
+    ]
+}
