@@ -1,5 +1,6 @@
 angular.module('BrieHope', 
     [
-        'ui.router'
+        'ui.router',
+        'ui.bootstrap'
     ]
 );

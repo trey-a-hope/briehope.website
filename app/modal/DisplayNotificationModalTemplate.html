@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">{{vm.header}}</h3>
+</div>
+<div class="modal-body">
+    <div class="alert alert-success" ng-show="vm.success">
+        <strong>Success!</strong> {{ vm.notificationMessage }}
+    </div>
+    <div class="alert alert-danger" ng-hide="vm.success">
+        <strong>Sorry</strong> {{ vm.notificationMessage }}
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-xs-2 pull-right">
+        <button class="btn btn-info width-full" ng-click="vm.acknowledge()">{{vm.acknowledgeButtonText}}</button>
+    </div>
+</div>

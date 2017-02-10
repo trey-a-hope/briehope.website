@@ -11,10 +11,16 @@
         "app/portfolio/PortfolioController.ts",
         "app/about/AboutController.ts",
         "app/contact/ContactController.ts",
+        "app/modal/DisplayNotificationModalController.ts",
         "app/routing/Routing.ts",
+        "app/services/ModalService.ts",
+        "app/services/MyFirebaseRef.ts",
         "js/scripts/typings/angular.d.ts",
         "js/scripts/typings/angular-route.d.ts",
+        "js/scripts/typings/angular-ui-bootstrap.d.ts",
         "js/scripts/typings/angular-ui-router.d.ts",
+        "js/scripts/typings/es6-promise.d.ts",
+        "js/scripts/typings/firebase.d.ts",
         "js/scripts/typings/jquery.d.ts"
     ]
 }

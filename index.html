@@ -13,14 +13,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="js/scripts/routing/angular-route.min.js"></script>
         <script src="js/scripts/routing/angular-ui-router.js"></script>
+        <script src="js/scripts/ui-bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+        <link rel="stylesheet" href="css/buttons.css"></link>
+        <link rel="stylesheet" href="css/bootstrap.css"></link>
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
         <!-- Module -->
         <script src="app/briehope.js"></script>
         <!-- Controllers -->
+        <script src="app/modal/DisplayNotificationModalController.js"></script>
         <script src="app/portfolio/PortfolioController.js"></script>
         <script src="app/about/AboutController.js"></script>
         <script src="app/contact/ContactController.js"></script>
         <!-- Routing -->
         <script src="app/routing/Routing.js"></script>
+        <!-- Services -->
+        <script src="app/services/MyFirebaseRef.js"></script>
+        <script src="app/services/ModalService.js"></script>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
@@ -29,13 +38,11 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
                 <div class="mdl-layout__header-row portfolio-logo-row">
-                    <span class="mdl-layout__title">
-                        <div class="portfolio-logo"></div>
-                        <span class="mdl-layout__title">Simple portfolio website for Brie Hope</span>
-                    </span>
+                    <h1>Brie Hope</h1>
                 </div>
                 <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
-                    <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font"
+                        style="box-shadow: none">
                         <a class="mdl-navigation__link" ui-sref="main" ui-sref-active="is-active">Portfolio</a>
                         <a class="mdl-navigation__link" ui-sref="about" ui-sref-active="is-active">About</a>
                         <a class="mdl-navigation__link" ui-sref="contact" ui-sref-active="is-active">Contact</a>
@@ -43,7 +50,8 @@
                 </div>
             </header>
             <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font"
+                    style="box-shadow: none">
                     <a class="mdl-navigation__link" ui-sref="main" ui-sref-active="is-active">Portfolio</a>
                     <a class="mdl-navigation__link" ui-sref="about" ui-sref-active="is-active">About</a>
                     <a class="mdl-navigation__link" ui-sref="contact" ui-sref-active="is-active">Contact</a>
