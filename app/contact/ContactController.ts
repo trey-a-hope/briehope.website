@@ -28,9 +28,9 @@ module App.Portfolio {
                 data: data,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}		
             }).success((result: any) => {	
-                alert('Message sent, I will respond shortly.')
+                this.modalService.displayNotification('Message sent, I will respond shortly.', 'Got It', 'OK', true);
             }).error((error: any) => {
-                alert('Message could not send, please try again.')
+                this.modalService.displayNotification(error.message, 'Error', 'OK', false);
             });	
         }
 

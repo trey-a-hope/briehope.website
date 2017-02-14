@@ -9,12 +9,14 @@ module App.Services {
             });
         private firebase: any;
         private databaseRef: any;
+        public aboutPageRef: any;
         public contactPageRef: any;
         public storageRef: any;
 
         constructor() {
             this.firebase = firebase.initializeApp(this.config);
             this.databaseRef = this.firebase.database().ref();
+            this.aboutPageRef = this.databaseRef.child('AboutPage');
             this.contactPageRef = this.databaseRef.child('ContactPage');
             this.storageRef = this.firebase.storage().ref();
         }

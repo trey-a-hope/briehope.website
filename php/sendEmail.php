@@ -7,7 +7,7 @@
     $email = $_POST['email'];
 	$message = $_POST['message'];
 
-	$to = "trey.a.hope@gmail.com";
+	$to = "brielhope@gmail.com";
 	$subject = "Message from ".$name." at ".$email; 
 
 	$result = @mail($to, $subject, $message);

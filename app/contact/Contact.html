@@ -7,6 +7,15 @@
                         <img class="article-image" src=" images/contact-image.jpg" border="0" alt=""></img>
                     </div>
                     <div class="mdl-card__supporting-text">
+                        <div class="col-xs-6">
+                            <input class="form-control" type="file" id="file-chooser" required/>
+                        </div>
+                        <div class="col-xs-6">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect main-button" type="button"
+                                    ng-click="vm.uploadPDF()">
+                                    Upload Resume
+                            </button>
+                        </div>
                         <p>
                             Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
                         </p>
@@ -27,11 +36,6 @@
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect main-button" type="button"
                                     ng-click="vm.sendEmail()">
                                     Submit
-                                </button>
-                                <input class="form-control" type="file" id="file-chooser" required/>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect main-button" type="button"
-                                    ng-click="vm.uploadPDF()">
-                                    Upload Resume
                                 </button>
                                 <a ng-href="{{vm.resumeHyperlink}}" style="float: right">My Resume</a>
                             </p>

@@ -5,13 +5,18 @@ module Routing {
 
         constructor(public $stateProvider: ng.ui.IStateProvider, public $urlRouteProvider: ng.ui.IUrlRouterProvider) {
             this.$stateProvider = $stateProvider;
-            this.init();
-        }
 
-        private init = () => {
-            // Main Page - Portfolio
-            this.$stateProvider.state('main', {
+            /* Landing page for website */
+            this.$stateProvider.state('landing', {
                 url: '/',
+                templateUrl: 'app/landing/landing.html',
+                controller: 'LandingController',
+                controllerAs: 'vm'
+            });
+
+            /* Portfolio */
+            this.$stateProvider.state('portfolio', {
+                url: '/portfolio',
                 templateUrl: 'app/portfolio/Portfolio.html',
                 controller: 'PortfolioController',
                 controllerAs: 'vm'

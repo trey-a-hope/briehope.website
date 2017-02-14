@@ -21,9 +21,9 @@ var App;
                         data: data,
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     }).success(function (result) {
-                        alert('Message sent, I will respond shortly.');
+                        _this.modalService.displayNotification('Message sent, I will respond shortly.', 'Got It', 'OK', true);
                     }).error(function (error) {
-                        alert('Message could not send, please try again.');
+                        _this.modalService.displayNotification(error.message, 'Error', 'OK', false);
                     });
                 };
                 this.uploadPDF = function () {

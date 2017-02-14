@@ -3,6 +3,5 @@ declare module Routing {
         $stateProvider: ng.ui.IStateProvider;
         $urlRouteProvider: ng.ui.IUrlRouterProvider;
         constructor($stateProvider: ng.ui.IStateProvider, $urlRouteProvider: ng.ui.IUrlRouterProvider);
-        private init;
     }
 }
