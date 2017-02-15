@@ -2,10 +2,13 @@ module App.Portfolio {
     import ModalService = App.Services.ModalService;
     import MyFirebaseRef = App.Services.MyFirebaseRef;
     class ContactController {
+
         name: string;
         email: string;
+        phoneNumber: string;
         message: string;
         resumeHyperlink: string;
+
         static $inject = ['$scope', '$http', 'MyFirebaseRef', 'ModalService'];
         constructor(public $scope: any, public $http: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService) {
             /* Get hyperlink to resume. */
@@ -17,21 +20,31 @@ module App.Portfolio {
         }
 
         sendEmail = (form: any): void =>{
-            var data = {
-                name: this.name,
-                email: this.email,
-                message: this.message
+            if(form.$valid)
+            {
+                var data = {
+                    name:           this.name,
+                    email:          this.email,
+                    phoneNumber:    this.phoneNumber,
+                    message:        this.message
+                }
+                
+                this.$http({			
+                    method: 'POST',			
+                    url: 'php/sendEmail.php',			
+                    data: data,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}		
+                }).success((result: any) => {	
+                    this.modalService.displayNotification('Message sent, I will respond shortly.', 'Got It', 'OK', true);
+                }).error((error: any) => {
+                    this.modalService.displayNotification(error.message, 'Error', 'OK', false);
+                });	
             }
-            this.$http({			
-                method: 'POST',			
-                url: 'php/sendEmail.php',			
-                data: data,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}		
-            }).success((result: any) => {	
-                this.modalService.displayNotification('Message sent, I will respond shortly.', 'Got It', 'OK', true);
-            }).error((error: any) => {
-                this.modalService.displayNotification(error.message, 'Error', 'OK', false);
-            });	
+            else
+            {
+                this.modalService.displayNotification('Some fields are incorrect/empty.', 'Error', 'OK', false);
+            }
+
         }
 
         uploadPDF = (): void =>{

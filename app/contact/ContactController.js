@@ -10,21 +10,27 @@ var App;
                 this.myFirebaseRef = myFirebaseRef;
                 this.modalService = modalService;
                 this.sendEmail = function (form) {
-                    var data = {
-                        name: _this.name,
-                        email: _this.email,
-                        message: _this.message
-                    };
-                    _this.$http({
-                        method: 'POST',
-                        url: 'php/sendEmail.php',
-                        data: data,
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                    }).success(function (result) {
-                        _this.modalService.displayNotification('Message sent, I will respond shortly.', 'Got It', 'OK', true);
-                    }).error(function (error) {
-                        _this.modalService.displayNotification(error.message, 'Error', 'OK', false);
-                    });
+                    if (form.$valid) {
+                        var data = {
+                            name: _this.name,
+                            email: _this.email,
+                            phoneNumber: _this.phoneNumber,
+                            message: _this.message
+                        };
+                        _this.$http({
+                            method: 'POST',
+                            url: 'php/sendEmail.php',
+                            data: data,
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        }).success(function (result) {
+                            _this.modalService.displayNotification('Message sent, I will respond shortly.', 'Got It', 'OK', true);
+                        }).error(function (error) {
+                            _this.modalService.displayNotification(error.message, 'Error', 'OK', false);
+                        });
+                    }
+                    else {
+                        _this.modalService.displayNotification('Some fields are incorrect/empty.', 'Error', 'OK', false);
+                    }
                 };
                 this.uploadPDF = function () {
                     var fileChooser = document.getElementById('file-chooser');
