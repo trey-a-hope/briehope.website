@@ -9,13 +9,17 @@ module App.Services {
             });
         private firebase: any;
         private databaseRef: any;
+        /* Pages */
+        public landingPageRef: any;
         public aboutPageRef: any;
         public contactPageRef: any;
+        /* Storage */
         public storageRef: any;
 
         constructor() {
             this.firebase = firebase.initializeApp(this.config);
             this.databaseRef = this.firebase.database().ref();
+            this.landingPageRef = this.databaseRef.child('LandingPage');
             this.aboutPageRef = this.databaseRef.child('AboutPage');
             this.contactPageRef = this.databaseRef.child('ContactPage');
             this.storageRef = this.firebase.storage().ref();

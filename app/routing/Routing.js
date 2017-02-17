@@ -6,7 +6,7 @@ var Routing;
             this.$stateProvider = $stateProvider;
             this.$urlRouteProvider = $urlRouteProvider;
             this.$stateProvider = $stateProvider;
-            this.$stateProvider.state('landing', {
+            this.$stateProvider.state('intro', {
                 url: '/',
                 templateUrl: 'app/landing/landing.html',
                 controller: 'LandingController',
@@ -28,6 +28,12 @@ var Routing;
                 url: '/contact',
                 templateUrl: 'app/contact/Contact.html',
                 controller: 'ContactController',
+                controllerAs: 'vm'
+            });
+            this.$stateProvider.state('login', {
+                url: '/login',
+                templateUrl: 'app/login/Login.html',
+                controller: 'LoginController',
                 controllerAs: 'vm'
             });
             this.$urlRouteProvider.otherwise('/');

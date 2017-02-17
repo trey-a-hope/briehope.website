@@ -1,0 +1,40 @@
+.gallery-item {
+    opacity: 1;
+}
+
+.gallery-item:hover {
+    opacity: 0.5;
+    -o-transition: opacity .2s ease-in-out;
+    -ms-transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .2s ease-in-out;
+    -webkit-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
+    cursor: pointer;
+}
+
+.portfolio-image {
+    position: relative;
+    width: 100%;
+    /* for IE 6 */
+}
+
+.portfolio-h2 {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+}
+
+.portfolio-h2 span {
+    color: white;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0);
+    /*opacity: 0.5;*/
+    /* fallback color */
+    /*background: rgba(0, 0, 0, 0.7);*/
+    padding: 50px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

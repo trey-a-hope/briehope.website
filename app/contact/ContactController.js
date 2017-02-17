@@ -3,12 +3,13 @@ var App;
     var Portfolio;
     (function (Portfolio) {
         var ContactController = (function () {
-            function ContactController($scope, $http, myFirebaseRef, modalService) {
+            function ContactController($scope, $http, myFirebaseRef, modalService, loginService) {
                 var _this = this;
                 this.$scope = $scope;
                 this.$http = $http;
                 this.myFirebaseRef = myFirebaseRef;
                 this.modalService = modalService;
+                this.loginService = loginService;
                 this.sendEmail = function (form) {
                     if (form.$valid) {
                         var data = {
@@ -55,7 +56,7 @@ var App;
                     _this.$scope.$apply();
                 });
             }
-            ContactController.$inject = ['$scope', '$http', 'MyFirebaseRef', 'ModalService'];
+            ContactController.$inject = ['$scope', '$http', 'MyFirebaseRef', 'ModalService', 'LoginService'];
             return ContactController;
         })();
         angular.module('BrieHope').controller('ContactController', ContactController);

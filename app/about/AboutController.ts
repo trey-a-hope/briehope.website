@@ -1,4 +1,5 @@
 module App.Portfolio {
+    import LoginService = App.Services.LoginService;
     import ModalService = App.Services.ModalService;
     import MyFirebaseRef = App.Services.MyFirebaseRef;
     class AboutController {
@@ -8,8 +9,8 @@ module App.Portfolio {
         title1IsEditting: boolean = false;
         paragraph1IsEditting: boolean = false;
 
-        static $inject = ['$scope', 'MyFirebaseRef', 'ModalService'];
-        constructor(public $scope: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService) {
+        static $inject = ['$scope', 'MyFirebaseRef', 'ModalService', 'LoginService'];
+        constructor(public $scope: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService, public loginService: LoginService) {
             this.setUI();
         }
 

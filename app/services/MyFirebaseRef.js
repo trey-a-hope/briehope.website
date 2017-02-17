@@ -12,6 +12,7 @@ var App;
                 });
                 this.firebase = firebase.initializeApp(this.config);
                 this.databaseRef = this.firebase.database().ref();
+                this.landingPageRef = this.databaseRef.child('LandingPage');
                 this.aboutPageRef = this.databaseRef.child('AboutPage');
                 this.contactPageRef = this.databaseRef.child('ContactPage');
                 this.storageRef = this.firebase.storage().ref();

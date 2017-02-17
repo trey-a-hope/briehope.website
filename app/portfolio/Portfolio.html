@@ -3,70 +3,27 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Portfolio</h2>
-                    <hr class="star-primary">
+                    <hr class="star-primary"></hr>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <div class="portfolio-link cursor-pointer" ng-click="vm.selectImage(0)">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/cabin.png" class="img-responsive" alt="" >
+                <div class="col-sm-4 portfolio-item" ng-repeat="image in vm.images">
+                    <div class="portfolio-link cursor-pointer portfolio-image gallery-item" ng-click="vm.selectImage(image)">
+                        <div style="padding-top: 20px"></div>
+                        <img ng-src="img/portfolio/thumbnails/{{image.id}}.jpg" class="img-responsive" alt="">
+                        </img>
+                            <h2 class="portfolio-h2">
+                                <span style="padding:0 5px;">{{ image.name }}
+                                </span>
+                            </h2>
                     </div>
+                    <br/>
+                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteSection()"><i class="fa fa-fw fa-close" style="color: red"></i></span>
                 </div>
-                <div class="col-sm-4 portfolio-item">
-                    <div class="portfolio-link cursor-pointer" ng-click="vm.selectImage(1)">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/cake.png" class="img-responsive" alt="">
-                    </div>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/circus.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>xs
-                        </div>
-                        <img src="img/portfolio/game.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/safe.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
-                    </a>
-                </div>
+            </div>
+            <div class="row">
+                <br>
+                <button class="btn btn-default" ng-show="vm.loginService.isLoggedIn()" ng-click="vm.addSection()">+ Section</button>
             </div>
         </div>
     </section>

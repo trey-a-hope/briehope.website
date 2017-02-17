@@ -1,16 +1,17 @@
 module App.Portfolio {
+    import LoginService = App.Services.LoginService;
     import ModalService = App.Services.ModalService;
     import MyFirebaseRef = App.Services.MyFirebaseRef;
+    
     class ContactController {
-
         name: string;
         email: string;
         phoneNumber: string;
         message: string;
         resumeHyperlink: string;
 
-        static $inject = ['$scope', '$http', 'MyFirebaseRef', 'ModalService'];
-        constructor(public $scope: any, public $http: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService) {
+        static $inject = ['$scope', '$http', 'MyFirebaseRef', 'ModalService', 'LoginService'];
+        constructor(public $scope: any, public $http: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService, public loginService: LoginService) {
             /* Get hyperlink to resume. */
             this.myFirebaseRef.contactPageRef.child('Resume').on('value', (snapshot: any) => {
                 this.resumeHyperlink = snapshot.val();

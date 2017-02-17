@@ -1,65 +1,20 @@
-<!--<div class="mdl-grid portfolio-max-width portfolio-contact">
-                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Contact</h2>
-                    </div>
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/contact-image.jpg" border="0" alt=""></img>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        <div class="col-xs-6">
-                            <input class="form-control" type="file" id="file-chooser" required/>
-                        </div>
-                        <div class="col-xs-6">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect main-button" type="button"
-                                    ng-click="vm.uploadPDF()">
-                                    Upload Resume
-                            </button>
-                        </div>
-                        <p>
-                            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-                        </p>
-                        <form action="#" class="">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" placeholder="Name" type="text" id="Name"
-                                    ng-model="vm.name">
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" placeholder="Email" type="text" id="Email"
-                                    ng-model="vm.email">
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input" placeholder="Message" type="text" rows="5" id="Message"
-                                    ng-model="vm.message"></textarea>
-                            </div>
-                            <p>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect main-button" type="button"
-                                    ng-click="vm.sendEmail()">
-                                    Submit
-                                </button>
-                                <a ng-href="{{vm.resumeHyperlink}}" style="float: right">My Resume</a>
-                            </p>
-                        </form>
-                    </div>
-                </div>
-            </div>-->
-    <section id="contact">
+<section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Contact Me</h2>
-                    <hr class="star-primary">
+                    <hr class="star-primary"></hr>
                 </div>
             </div>
             <div class="row">
                 <div class="footer-col col-md-4 col-md-offset-4 text-center">
                     <ul class="list-inline">
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-envelope"></i></a>
                                 beebee80@gmail.com
                             </li>
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-phone"></i></a>
                                 (937)396-4772
                             </li>
                     </ul>
@@ -100,13 +55,13 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-default" ng-click="vm.sendEmail(contactForm)">Send</button>
-                                <button class="btn btn-default" ng-click="vm.uploadPDF()">
+                                <button type="submit" class="btn btn-default" ng-click="vm.sendEmail(contactForm)">Send Message</button>
+                                <a ng-href="{{vm.resumeHyperlink}}">View My Resume</a>
+                                </br>
+                                <input type="file" id="file-chooser" ng-show="vm.loginService.isLoggedIn()" required/>
+                                <button class="btn btn-default" ng-show="vm.loginService.isLoggedIn()" ng-click="vm.uploadPDF()">
                                     Upload Resume
                                 </button>
-                                <a ng-href="{{vm.resumeHyperlink}}" style="float: right">My Resume</a>
-                                </br>
-                                <input type="file" id="file-chooser" required/>
                             </div>
                         </div>
                     </ng-form>
@@ -132,6 +87,5 @@
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
                             </li>
                         </ul>
-                    </div>
                     </div>
     </section>

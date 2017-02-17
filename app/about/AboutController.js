@@ -3,11 +3,12 @@ var App;
     var Portfolio;
     (function (Portfolio) {
         var AboutController = (function () {
-            function AboutController($scope, myFirebaseRef, modalService) {
+            function AboutController($scope, myFirebaseRef, modalService, loginService) {
                 var _this = this;
                 this.$scope = $scope;
                 this.myFirebaseRef = myFirebaseRef;
                 this.modalService = modalService;
+                this.loginService = loginService;
                 this.title1IsEditting = false;
                 this.paragraph1IsEditting = false;
                 this.setUI = function () {
@@ -44,7 +45,7 @@ var App;
                 };
                 this.setUI();
             }
-            AboutController.$inject = ['$scope', 'MyFirebaseRef', 'ModalService'];
+            AboutController.$inject = ['$scope', 'MyFirebaseRef', 'ModalService', 'LoginService'];
             return AboutController;
         })();
         var Section;

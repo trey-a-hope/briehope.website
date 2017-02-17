@@ -3,6 +3,7 @@ declare module App.Services {
         private config;
         private firebase;
         private databaseRef;
+        landingPageRef: any;
         aboutPageRef: any;
         contactPageRef: any;
         storageRef: any;
