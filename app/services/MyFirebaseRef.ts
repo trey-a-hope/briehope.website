@@ -10,8 +10,10 @@ module App.Services {
         private firebase: any;
         private databaseRef: any;
         /* Pages */
+        public loginPageRef: any;
         public landingPageRef: any;
         public aboutPageRef: any;
+        public profilePageRef: any;
         public contactPageRef: any;
         /* Storage */
         public storageRef: any;
@@ -19,8 +21,10 @@ module App.Services {
         constructor() {
             this.firebase = firebase.initializeApp(this.config);
             this.databaseRef = this.firebase.database().ref();
+            this.loginPageRef = this.databaseRef.child('LoginPage');
             this.landingPageRef = this.databaseRef.child('LandingPage');
             this.aboutPageRef = this.databaseRef.child('AboutPage');
+            this.profilePageRef = this.databaseRef.child('ProfilePage');
             this.contactPageRef = this.databaseRef.child('ContactPage');
             this.storageRef = this.firebase.storage().ref();
         }

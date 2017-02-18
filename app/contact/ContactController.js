@@ -10,6 +10,7 @@ var App;
                 this.myFirebaseRef = myFirebaseRef;
                 this.modalService = modalService;
                 this.loginService = loginService;
+                this.emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 this.sendEmail = function (form) {
                     if (form.$valid) {
                         var data = {
@@ -53,10 +54,18 @@ var App;
                 };
                 this.myFirebaseRef.contactPageRef.child('Resume').on('value', function (snapshot) {
                     _this.resumeHyperlink = snapshot.val();
-                    _this.$scope.$apply();
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
                 });
             }
-            ContactController.$inject = ['$scope', '$http', 'MyFirebaseRef', 'ModalService', 'LoginService'];
+            ContactController.$inject = [
+                '$scope',
+                '$http',
+                'MyFirebaseRef',
+                'ModalService',
+                'LoginService'
+            ];
             return ContactController;
         })();
         angular.module('BrieHope').controller('ContactController', ContactController);

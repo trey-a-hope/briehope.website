@@ -4,19 +4,32 @@ module App.Portfolio {
     import MyFirebaseRef = App.Services.MyFirebaseRef;
     
     class ContactController {
+        /* Input Fields */
         name: string;
         email: string;
         phoneNumber: string;
         message: string;
+        /* Links */
         resumeHyperlink: string;
+        /* Regex */
+        phoneNumberRegex: string;
+        emailRegex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        static $inject = ['$scope', '$http', 'MyFirebaseRef', 'ModalService', 'LoginService'];
-        constructor(public $scope: any, public $http: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService, public loginService: LoginService) {
+        static $inject = [
+            '$scope', 
+            '$http', 
+            'MyFirebaseRef', 
+            'ModalService', 
+            'LoginService'
+        ];
+        constructor(public $scope: ng.IScope, public $http: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService, public loginService: LoginService) {
             /* Get hyperlink to resume. */
             this.myFirebaseRef.contactPageRef.child('Resume').on('value', (snapshot: any) => {
                 this.resumeHyperlink = snapshot.val();
                 /* Refresh UI. */
-                this.$scope.$apply();
+                if(!this.$scope.$$phase){
+                    this.$scope.$apply();
+                }
             });
         }
 

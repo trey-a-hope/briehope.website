@@ -14,7 +14,13 @@ var App;
                     _this.$modalInstance.close();
                 };
             }
-            DisplayNotificationModalController.$inject = ['$modalInstance', 'notificationMessage', 'header', 'acknowledgeButtonText', 'success'];
+            DisplayNotificationModalController.$inject = [
+                '$modalInstance',
+                'notificationMessage',
+                'header',
+                'acknowledgeButtonText',
+                'success'
+            ];
             return DisplayNotificationModalController;
         })();
         angular.module('BrieHope').controller('DisplayNotificationModalController', DisplayNotificationModalController);

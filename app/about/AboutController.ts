@@ -9,8 +9,13 @@ module App.Portfolio {
         title1IsEditting: boolean = false;
         paragraph1IsEditting: boolean = false;
 
-        static $inject = ['$scope', 'MyFirebaseRef', 'ModalService', 'LoginService'];
-        constructor(public $scope: any, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService, public loginService: LoginService) {
+        static $inject = [
+            '$scope', 
+            'MyFirebaseRef', 
+            'ModalService', 
+            'LoginService'
+        ];
+        constructor(public $scope: ng.IScope, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService, public loginService: LoginService) {
             this.setUI();
         }
 

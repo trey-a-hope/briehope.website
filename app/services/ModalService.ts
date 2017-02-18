@@ -1,12 +1,11 @@
-'use strict'
-
 module App.Services {
-    /*
-        Modal Service: Handles simple modal displaying.
-    */
+    
     export class ModalService {
 
-        static $inject = ['$modal', '$q'];
+        static $inject = [
+            '$modal', 
+            '$q'
+        ];
         constructor(public $modal: ng.ui.bootstrap.IModalService, public $q: ng.IQService) { }
 
         displayNotification = (notificationMessage: string, header: string, acknowledgeButtonText: string, success?: boolean) => {

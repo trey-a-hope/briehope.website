@@ -1,4 +1,3 @@
-'use strict';
 var Routing;
 (function (Routing) {
     var Route = (function () {
@@ -7,8 +6,8 @@ var Routing;
             this.$urlRouteProvider = $urlRouteProvider;
             this.$stateProvider = $stateProvider;
             this.$stateProvider.state('intro', {
-                url: '/',
-                templateUrl: 'app/landing/landing.html',
+                url: '/intro',
+                templateUrl: 'app/landing/Landing.html',
                 controller: 'LandingController',
                 controllerAs: 'vm'
             });
@@ -36,7 +35,7 @@ var Routing;
                 controller: 'LoginController',
                 controllerAs: 'vm'
             });
-            this.$urlRouteProvider.otherwise('/');
+            this.$urlRouteProvider.otherwise('/intro');
         }
         return Route;
     })();

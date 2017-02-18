@@ -4,11 +4,12 @@ var App;
     (function (Portfolio) {
         var Image = App.Models.Image;
         var PortfolioController = (function () {
-            function PortfolioController($scope, $state, loginService) {
+            function PortfolioController($scope, $state, loginService, myFirebaseRef) {
                 var _this = this;
                 this.$scope = $scope;
                 this.$state = $state;
                 this.loginService = loginService;
+                this.myFirebaseRef = myFirebaseRef;
                 this.images = new Array();
                 this.selectImage = function (image) {
                     alert(image.name);
@@ -46,8 +47,18 @@ var App;
                     _this.images.push(image);
                 };
                 this.setImages();
+                this.myFirebaseRef.profilePageRef.child('Sections').on('value', function (snapshot) {
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
+                });
             }
-            PortfolioController.$inject = ['$scope', '$state', 'LoginService'];
+            PortfolioController.$inject = [
+                '$scope',
+                '$state',
+                'LoginService',
+                'MyFirebaseRef'
+            ];
             return PortfolioController;
         })();
         angular.module('BrieHope').controller('PortfolioController', PortfolioController);

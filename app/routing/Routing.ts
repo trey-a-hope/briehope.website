@@ -1,5 +1,3 @@
-'use strict'
-
 module Routing {
     export class Route {
 
@@ -8,8 +6,8 @@ module Routing {
 
             /* Landing Page */
             this.$stateProvider.state('intro', {
-                url:            '/',
-                templateUrl:    'app/landing/landing.html',
+                url:            '/intro',
+                templateUrl:    'app/landing/Landing.html',
                 controller:     'LandingController',
                 controllerAs:   'vm'
             });
@@ -46,7 +44,7 @@ module Routing {
                 controllerAs:   'vm'
             });
 
-            this.$urlRouteProvider.otherwise('/');
+            this.$urlRouteProvider.otherwise('/intro');
         }
     }
 }

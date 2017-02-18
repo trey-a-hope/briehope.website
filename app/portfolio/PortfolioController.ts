@@ -1,13 +1,25 @@
 module App.Portfolio {
     import Image = App.Models.Image;
     import LoginService = App.Services.LoginService;
+    import MyFirebaseRef = App.Services.MyFirebaseRef;
 
     class PortfolioController {
         images: Array<Image> = new Array<Image>();
 
-        static $inject = ['$scope', '$state', 'LoginService'];
-        constructor(public $scope: any, public $state: any, public loginService: LoginService) {
+        static $inject = [
+            '$scope', 
+            '$state', 
+            'LoginService', 
+            'MyFirebaseRef'
+        ];
+        constructor(public $scope: ng.IScope, public $state: ng.ui.IStateService, public loginService: LoginService, public myFirebaseRef: MyFirebaseRef) {
             this.setImages();
+            this.myFirebaseRef.profilePageRef.child('Sections').on('value', (snapshot: any) => {
+                //this.resumeHyperlink = snapshot.val();
+                if(!this.$scope.$$phase){
+                    this.$scope.$apply();
+                }
+            });
         }
 
         selectImage = (image: Image): void =>{

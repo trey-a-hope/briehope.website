@@ -45,7 +45,12 @@ var App;
                 };
                 this.setUI();
             }
-            AboutController.$inject = ['$scope', 'MyFirebaseRef', 'ModalService', 'LoginService'];
+            AboutController.$inject = [
+                '$scope',
+                'MyFirebaseRef',
+                'ModalService',
+                'LoginService'
+            ];
             return AboutController;
         })();
         var Section;

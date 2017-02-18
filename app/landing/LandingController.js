@@ -3,12 +3,13 @@ var App;
     var Landing;
     (function (Landing) {
         var LandingController = (function () {
-            function LandingController($scope, $state, myFirebaseRef, loginService) {
+            function LandingController($scope, $state, myFirebaseRef, loginService, modalService) {
                 var _this = this;
                 this.$scope = $scope;
                 this.$state = $state;
                 this.myFirebaseRef = myFirebaseRef;
                 this.loginService = loginService;
+                this.modalService = modalService;
                 this.titleIsEditting = false;
                 this.subTitleIsEditting = false;
                 this.enter = function () {
@@ -32,16 +33,38 @@ var App;
                             break;
                     }
                 };
+                this.updatePasscode = function () {
+                    if (_this.passcode != null && _this.passcode.length > 0) {
+                        _this.myFirebaseRef.loginPageRef.child("Passcode").set(_this.passcode);
+                        _this.modalService.displayNotification("Your passcode has been udpated.", "Success", "OK", true);
+                    }
+                };
                 this.myFirebaseRef.landingPageRef.child('Title').on('value', function (snapshot) {
                     _this.title = snapshot.val();
-                    _this.$scope.$apply();
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
                 });
                 this.myFirebaseRef.landingPageRef.child('SubTitle').on('value', function (snapshot) {
                     _this.subTitle = snapshot.val();
-                    _this.$scope.$apply();
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
+                });
+                this.myFirebaseRef.loginPageRef.child('Passcode').on('value', function (snapshot) {
+                    _this.passcode = snapshot.val();
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
                 });
             }
-            LandingController.$inject = ['$scope', '$state', 'MyFirebaseRef', 'LoginService'];
+            LandingController.$inject = [
+                '$scope',
+                '$state',
+                'MyFirebaseRef',
+                'LoginService',
+                'ModalService'
+            ];
             return LandingController;
         })();
         var Section;

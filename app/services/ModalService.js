@@ -1,4 +1,3 @@
-'use strict';
 var App;
 (function (App) {
     var Services;
@@ -31,7 +30,10 @@ var App;
                     });
                 };
             }
-            ModalService.$inject = ['$modal', '$q'];
+            ModalService.$inject = [
+                '$modal',
+                '$q'
+            ];
             return ModalService;
         })();
         Services.ModalService = ModalService;
