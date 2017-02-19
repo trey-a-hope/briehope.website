@@ -11,6 +11,7 @@
         "app/portfolio/PortfolioController.ts",
         "app/about/AboutController.ts",
         "app/contact/ContactController.ts",
+        "app/directives/OnEnter.ts",
         "app/landing/LandingController.ts",
         "app/login/LoginController.ts",
         "app/modal/DisplayNotificationModalController.ts",

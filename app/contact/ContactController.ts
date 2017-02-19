@@ -81,6 +81,5 @@ module App.Portfolio {
             }
         }
     }
-
     angular.module('BrieHope').controller('ContactController', ContactController);
 }

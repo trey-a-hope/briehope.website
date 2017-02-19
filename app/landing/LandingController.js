@@ -12,6 +12,7 @@ var App;
                 this.modalService = modalService;
                 this.titleIsEditting = false;
                 this.subTitleIsEditting = false;
+                this.buttonIsEditting = false;
                 this.enter = function () {
                     _this.$state.go('portfolio');
                 };
@@ -28,6 +29,12 @@ var App;
                                 _this.myFirebaseRef.landingPageRef.child('SubTitle').set(_this.subTitle);
                             }
                             _this.subTitleIsEditting = !_this.subTitleIsEditting;
+                            break;
+                        case Section.Button:
+                            if (_this.buttonIsEditting) {
+                                _this.myFirebaseRef.landingPageRef.child('Button').set(_this.buttonText);
+                            }
+                            _this.buttonIsEditting = !_this.buttonIsEditting;
                             break;
                         default:
                             break;
@@ -57,6 +64,12 @@ var App;
                         _this.$scope.$apply();
                     }
                 });
+                this.myFirebaseRef.landingPageRef.child('Button').on('value', function (snapshot) {
+                    _this.buttonText = snapshot.val();
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
+                });
             }
             LandingController.$inject = [
                 '$scope',
@@ -71,6 +84,7 @@ var App;
         (function (Section) {
             Section[Section["Title"] = 0] = "Title";
             Section[Section["SubTitle"] = 1] = "SubTitle";
+            Section[Section["Button"] = 2] = "Button";
         })(Section || (Section = {}));
         angular.module('BrieHope').controller('LandingController', LandingController);
     })(Landing = App.Landing || (App.Landing = {}));

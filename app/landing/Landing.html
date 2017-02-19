@@ -1,18 +1,32 @@
 <div class="header-content">
     <div class="header-content-inner">
-        <h1 ng-hide="vm.titleIsEditting" id="homeHeading">{{ vm.title }}</h1>
+        <h1 ng-hide="vm.titleIsEditting" 
+            id="homeHeading"
+            class="animated rotateInDownLeft">
+            {{ vm.title }}
+        </h1>
         <input class="form-control" ng-show="vm.titleIsEditting" ng-model="vm.title"/>
-        <button class="btn btn-default" ng-show="vm.loginService.isLoggedIn()" ng-click="vm.toggleEdit(0)">{{ vm.titleIsEditting ? 'Done' : 'Edit Title'}}</button>
+        <button class="btn btn-default" ng-show="vm.loginService.isLoggedIn()" ng-click="vm.toggleEdit(0)">{{ vm.titleIsEditting ? 'Done' : 'Edit Title' }}</button>
         <hr>
-        <p ng-hide="vm.subTitleIsEditting" style="margin-bottom: 0 !important">{{ vm.subTitle }}</p>
+        <p ng-hide="vm.subTitleIsEditting" 
+            style="margin-bottom: 0 !important"
+            class="animated rotateInUpRight">{{ vm.subTitle }}</p>
         <input class="form-control" ng-show="vm.subTitleIsEditting" ng-model="vm.subTitle"/>
-        <button class="btn btn-default" ng-show="vm.loginService.isLoggedIn()" ng-click="vm.toggleEdit(1)">{{ vm.subTitleIsEditting ? 'Done' : 'Edit SubTitle'}}</button>
+        <button class="btn btn-default" ng-show="vm.loginService.isLoggedIn()" ng-click="vm.toggleEdit(1)">{{ vm.subTitleIsEditting ? 'Done' : 'Edit SubTitle' }}</button>
         <br/>
-        <a href="#about" class="btn btn-primary btn-xl page-scroll" style="margin-top: 50px">Find Out More</a>
+        <a href="#about" 
+            class="btn btn-primary btn-xl page-scroll animated bounceIn" 
+            style="margin-top: 50px"
+            ng-hide="vm.buttonIsEditting">
+            {{ vm.buttonText }}
+        </a>
+        <input class="form-control" ng-show="vm.buttonIsEditting" ng-model="vm.buttonText"/>
+        <br/>
+        <button class="btn btn-default" ng-show="vm.loginService.isLoggedIn()" ng-click="vm.toggleEdit(2)">{{ vm.buttonIsEditting ? 'Done' : 'Edit Button Text' }}</button>
         <br/>
         <div class="row" ng-show="vm.loginService.isLoggedIn()" style="margin-top: 50px">
             <div class="col-xs-4 col-xs-offset-4">
-                <input type="text" class="form-control" ng-model="vm.passcode"></input>
+                <input type="text" class="form-control" ng-model="vm.passcode" on-enter="vm.updatePasscode()"></input>
                 <button class="btn btn-default" ng-click="vm.updatePasscode()">Update Passcode</button>
             </div>
         </div>

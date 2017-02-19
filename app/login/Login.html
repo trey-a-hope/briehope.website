@@ -8,7 +8,10 @@
             </div>
             <div class="row">
                 <div class="col-xs-4 col-xs-offset-4">
-                    <input type="text" class="form-control" ng-model="vm.passcode"></input>
+                    <input type="text" 
+                        class="form-control" 
+                        ng-model="vm.passcode"
+                        on-enter="vm.login()"></input>
                 </div>        
             </div>
             <div class="row">

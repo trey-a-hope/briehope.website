@@ -6,10 +6,11 @@ module App.Landing {
     class LandingController {
         title: string;
         subTitle: string;
-        passcode: string;
-
+        buttonText: string;
         titleIsEditting: boolean = false;
         subTitleIsEditting: boolean = false;
+        buttonIsEditting: boolean = false;
+        passcode: string;
 
         static $inject = [
             '$scope', 
@@ -35,9 +36,17 @@ module App.Landing {
                     this.$scope.$apply();
                 }
             });
-             /* Get passcode. */
+            /* Get passcode. */
             this.myFirebaseRef.loginPageRef.child('Passcode').on('value', (snapshot: any) => {
                 this.passcode = snapshot.val();
+                /* Refresh UI. */
+                if(!this.$scope.$$phase){
+                    this.$scope.$apply();
+                }
+            });
+            /* Get button text. */
+            this.myFirebaseRef.landingPageRef.child('Button').on('value', (snapshot: any) => {
+                this.buttonText = snapshot.val();
                 /* Refresh UI. */
                 if(!this.$scope.$$phase){
                     this.$scope.$apply();
@@ -63,6 +72,12 @@ module App.Landing {
                     }
                     this.subTitleIsEditting = !this.subTitleIsEditting;
                     break;
+                case Section.Button:
+                    if(this.buttonIsEditting){
+                        this.myFirebaseRef.landingPageRef.child('Button').set(this.buttonText);
+                    }
+                    this.buttonIsEditting = !this.buttonIsEditting;
+                    break;
                 default:
                     break;
             }
@@ -79,7 +94,8 @@ module App.Landing {
 
     enum Section{
         Title,
-        SubTitle
+        SubTitle,
+        Button
     }
 
     angular.module('BrieHope').controller('LandingController', LandingController);
