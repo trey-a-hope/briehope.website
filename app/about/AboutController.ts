@@ -1,10 +1,13 @@
 module App.Portfolio {
+    import Image = App.Models.Image;
     import LoginService = App.Services.LoginService;
     import ModalService = App.Services.ModalService;
     import MyFirebaseRef = App.Services.MyFirebaseRef;
+
     class AboutController {
         title1: string;
         paragraph1: string;
+        image: Image = new Image();
 
         title1IsEditting: boolean = false;
         paragraph1IsEditting: boolean = false;
@@ -16,11 +19,7 @@ module App.Portfolio {
             'LoginService'
         ];
         constructor(public $scope: ng.IScope, public myFirebaseRef: MyFirebaseRef, public modalService: ModalService, public loginService: LoginService) {
-            this.setUI();
-        }
-
-        setUI = (): void =>{
-            /* Title 1 */
+                        /* Title 1 */
             this.myFirebaseRef.aboutPageRef.child('Title1').on('value', (snapshot: any) => {
                 this.title1 = snapshot.val();
                 /* Refresh UI. */
@@ -37,9 +36,16 @@ module App.Portfolio {
                     this.$scope.$apply();
                 }
             });
+            /* Image */
+            this.myFirebaseRef.aboutPageRef.child('Image').on('value', (snapshot: any) => {
+                this.image = snapshot.val();
+                if(!this.$scope.$$phase){
+                    this.$scope.$apply();
+                }
+            });
         }
 
-        toggleEdit = (section: number): void =>{
+        toggleEdit = (section: number): void => {
             switch(section){
                 case Section.Title1:
                     if(this.title1IsEditting){
@@ -57,9 +63,33 @@ module App.Portfolio {
                     break;
             }
         }
+
+        uploadPicture = (): void => {
+            var fileChooser: any = document.getElementById('file-chooser');     
+            var file = fileChooser.files[0]; 
+
+            //Create image.
+            var image = new Image(); 
+
+            if (file) {
+                var uploadTask = this.myFirebaseRef.storageRef.child("AboutPage/ProfilePicture").put(file);
+                uploadTask.on('state_changed', 
+                    (snapshot: any) => {}, 
+                    (error: any) => {}, 
+                    (success: any) => {
+                        var downloadURL = uploadTask.snapshot.downloadURL;
+                        image.url = downloadURL;
+                        this.myFirebaseRef.aboutPageRef.child('Image').update(image);
+                        this.modalService.displayNotification("Image uploaded successfully.", "Success", "OK", true);
+                    });
+            }
+            else {
+                this.modalService.displayNotification("Must select picture first.", "Error", "OK", false);
+            }
+        }
     }
 
-    enum Section{
+    enum Section {
         Title1,
         Paragraph1
     }

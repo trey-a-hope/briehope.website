@@ -52,6 +52,16 @@ var App;
                         _this.modalService.displayNotification('Must upload a PDF', 'Error', 'OK', false);
                     }
                 };
+                this.editEmail = function () {
+                    if (_this.loginService.isLoggedIn()) {
+                        alert("Edit Email");
+                    }
+                };
+                this.editPhoneNumber = function () {
+                    if (_this.loginService.isLoggedIn()) {
+                        alert("Edit Phone Number");
+                    }
+                };
                 this.myFirebaseRef.contactPageRef.child('Resume').on('value', function (snapshot) {
                     _this.resumeHyperlink = snapshot.val();
                     if (!_this.$scope.$$phase) {

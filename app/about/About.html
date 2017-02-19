@@ -8,7 +8,16 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 pull-right" style="margin-top: 20px">
-                    <img class="img-responsive animated slideInRight" src="img/portfolio/thumbnails/1.jpg" alt=""></img>
+                    <img class="img-responsive animated slideInRight"
+                        ng-src="{{ vm.image.url }}" 
+                        alt="profileImage"
+                        style="border: white 2px solid"></img>
+                    <input type="file" id="file-chooser" ng-show="vm.loginService.isLoggedIn()" required/>
+                    <button class="btn btn-default" 
+                        ng-show="vm.loginService.isLoggedIn()" 
+                        ng-click="vm.uploadPicture()">
+                        Upload Picture
+                    </button>
                 </div>
                 <div class="col-lg-8">
                     <h1 ng-hide="vm.title1IsEditting"

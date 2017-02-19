@@ -6,7 +6,7 @@ module App.Services {
             '$modal', 
             '$q'
         ];
-        constructor(public $modal: ng.ui.bootstrap.IModalService, public $q: ng.IQService) { }
+        constructor(private $modal: ng.ui.bootstrap.IModalService, private $q: ng.IQService) { }
 
         displayNotification = (notificationMessage: string, header: string, acknowledgeButtonText: string, success?: boolean) => {
             this.$modal.open({

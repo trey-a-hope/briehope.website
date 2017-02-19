@@ -80,6 +80,18 @@ module App.Portfolio {
                 this.modalService.displayNotification('Must upload a PDF', 'Error', 'OK', false);
             }
         }
+
+        editEmail = (): void => {
+            if(this.loginService.isLoggedIn()){
+                alert("Edit Email");
+            }
+        }
+
+        editPhoneNumber = (): void => {
+            if(this.loginService.isLoggedIn()){
+                alert("Edit Phone Number");
+            }
+        }
     }
     angular.module('BrieHope').controller('ContactController', ContactController);
 }
