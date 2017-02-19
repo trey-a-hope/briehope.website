@@ -10,7 +10,7 @@
                 <div class="col-sm-4 portfolio-item" ng-repeat="image in vm.images">
                     <div class="portfolio-link cursor-pointer portfolio-image gallery-item animated bounceIn" ng-click="vm.selectImage(image)">
                         <div style="padding-top: 20px"></div>
-                        <img ng-src="img/portfolio/thumbnails/{{image.id}}.jpg" class="img-responsive" alt="">
+                        <img ng-src="{{ image.url }}" class="img-responsive" alt="">
                         </img>
                             <h2 class="portfolio-h2">
                                 <span style="padding:0 5px;">{{ image.name }}
@@ -18,7 +18,7 @@
                             </h2>
                     </div>
                     <br/>
-                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteSection()"><i class="fa fa-fw fa-close" style="color: red"></i></span>
+                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteSection(image)"><i class="fa fa-fw fa-close" style="color: red"></i></span>
                 </div>
             </div>
             <div class="row">

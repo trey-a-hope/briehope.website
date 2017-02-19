@@ -65,7 +65,7 @@ module App.Portfolio {
             var fileChooser:any = document.getElementById('file-chooser');     
             var file = fileChooser.files[0]; 
             if (file) {
-                var uploadTask = this.myFirebaseRef.storageRef.child("Documents/PDFs/Resume").put(file);
+                var uploadTask = this.myFirebaseRef.storageRef.child("ContactPage/Resume").put(file);
                 uploadTask.on('state_changed', 
                     (snapshot: any) => {
                     }, (error: any) => {

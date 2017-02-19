@@ -2,52 +2,51 @@ var App;
 (function (App) {
     var Portfolio;
     (function (Portfolio) {
-        var Image = App.Models.Image;
         var PortfolioController = (function () {
-            function PortfolioController($scope, $state, loginService, myFirebaseRef) {
+            function PortfolioController($scope, $state, loginService, myFirebaseRef, $modal, modalService) {
                 var _this = this;
                 this.$scope = $scope;
                 this.$state = $state;
                 this.loginService = loginService;
                 this.myFirebaseRef = myFirebaseRef;
+                this.$modal = $modal;
+                this.modalService = modalService;
                 this.images = new Array();
                 this.selectImage = function (image) {
                     alert(image.name);
                 };
                 this.addSection = function () {
-                    alert("Working on adding section.");
+                    _this.$modal.open({
+                        templateUrl: 'app/modal/AddSectionModalTemplate.html',
+                        controller: 'AddSectionModalController as vm',
+                        size: 'md',
+                        backdrop: 'static'
+                    }).result
+                        .then(function (result) {
+                        _this.modalService.displayNotification("Your section has been uploaded.", "Success", "OK", true);
+                    })
+                        .catch(function (error) {
+                    });
                 };
-                this.deleteSection = function () {
-                    alert("Working on deleting section.");
+                this.deleteSection = function (image) {
+                    _this.modalService.displayConfirmation("Are you sure you want to delete the " + image.name + " section?", "Delete", "Yes", false)
+                        .then(function (result) {
+                        _this.myFirebaseRef.portfolioPageRef.child(image.id).remove();
+                        _this.myFirebaseRef.storageRef.child('PortfolioPage/' + image.id).delete()
+                            .then(function (result) {
+                            _this.modalService.displayNotification("Section deleted successfully.", "Success", "OK", true);
+                        })
+                            .catch(function (error) {
+                            _this.modalService.displayNotification(error.message, "Error", "OK", false);
+                        });
+                    })
+                        .catch(function (error) {
+                    })
+                        .finally(function () {
+                    });
                 };
-                this.setImages = function () {
-                    var image = new Image();
-                    image.id = 1;
-                    image.name = "Mountains";
-                    _this.images.push(image);
-                    image = new Image();
-                    image.id = 2;
-                    image.name = "New Areas";
-                    _this.images.push(image);
-                    image = new Image();
-                    image.id = 3;
-                    image.name = "Water Falls";
-                    _this.images.push(image);
-                    image = new Image();
-                    image.id = 4;
-                    image.name = "Focus";
-                    _this.images.push(image);
-                    image = new Image();
-                    image.id = 5;
-                    image.name = "Territory";
-                    _this.images.push(image);
-                    image = new Image();
-                    image.id = 6;
-                    image.name = "Trees";
-                    _this.images.push(image);
-                };
-                this.setImages();
-                this.myFirebaseRef.profilePageRef.child('Sections').on('value', function (snapshot) {
+                this.myFirebaseRef.portfolioPageRef.on('value', function (snapshot) {
+                    _this.images = snapshot.val();
                     if (!_this.$scope.$$phase) {
                         _this.$scope.$apply();
                     }
@@ -57,7 +56,9 @@ var App;
                 '$scope',
                 '$state',
                 'LoginService',
-                'MyFirebaseRef'
+                'MyFirebaseRef',
+                '$modal',
+                'ModalService'
             ];
             return PortfolioController;
         })();

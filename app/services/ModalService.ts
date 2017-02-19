@@ -30,6 +30,35 @@ module App.Services {
                 }
             });
         }
+
+        displayConfirmation = (confirmationMessage: string, confirmationHeader: string, confirmButtonText: string, success?: boolean) => {
+           var deferred = this.$q.defer<boolean>();
+           this.$modal.open({
+               templateUrl: 'app/modal/DisplayConfirmationModalTemplate.html',
+               controller: 'DisplayConfirmationModalController as vm',
+               size: 'md',
+               backdrop: 'static',
+               resolve: {
+                   deferred: () => {
+                       return deferred;
+                   },
+                   confirmationMessage: () => {
+                       return confirmationMessage;
+                   },
+                   confirmationHeader: () => {
+                       return confirmationHeader;
+                   },
+                   confirmButtonText: () => {
+                       return confirmButtonText;
+                   },
+                   success: () =>{
+                       return success;
+                   }
+               }
+           });
+
+           return deferred.promise;
+       }
     }
 
     angular.module('BrieHope').service('ModalService', ModalService);

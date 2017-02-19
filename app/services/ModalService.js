@@ -29,6 +29,33 @@ var App;
                         }
                     });
                 };
+                this.displayConfirmation = function (confirmationMessage, confirmationHeader, confirmButtonText, success) {
+                    var deferred = _this.$q.defer();
+                    _this.$modal.open({
+                        templateUrl: 'app/modal/DisplayConfirmationModalTemplate.html',
+                        controller: 'DisplayConfirmationModalController as vm',
+                        size: 'md',
+                        backdrop: 'static',
+                        resolve: {
+                            deferred: function () {
+                                return deferred;
+                            },
+                            confirmationMessage: function () {
+                                return confirmationMessage;
+                            },
+                            confirmationHeader: function () {
+                                return confirmationHeader;
+                            },
+                            confirmButtonText: function () {
+                                return confirmButtonText;
+                            },
+                            success: function () {
+                                return success;
+                            }
+                        }
+                    });
+                    return deferred.promise;
+                };
             }
             ModalService.$inject = [
                 '$modal',
