@@ -11,21 +11,29 @@
                     <ul class="list-inline animated slideInDown">
                             <li>
                                 <a href="" 
-                                    ng-click="vm.editEmail()"
+                                    ng-click="vm.toggleEdit(0)"
                                     class="btn-social btn-outline">
                                     <i class="fa fa-fw fa-envelope">
                                     </i>
                                 </a>
-                                brielhope@gmail.com
+                                {{ vm.myEmailIsEditting ? '' : vm.myEmail }}
+                                <input type="text" 
+                                    ng-model="vm.myEmail"
+                                    class="form-control"
+                                    ng-show="vm.myEmailIsEditting"></input>
                             </li>
                             <li>
                                 <a href="" 
-                                    ng-click="vm.editPhoneNumber()"
+                                    ng-click="vm.toggleEdit(1)"
                                     class="btn-social btn-outline">
                                     <i class="fa fa-fw fa-phone">
                                     </i>
                                 </a>
-                                (937)396-4772
+                                {{ vm.myPhoneNumberIsEditting ? '' : vm.myPhoneNumber }}
+                                <input type="text" 
+                                    ng-model="vm.myPhoneNumber"
+                                    class="form-control"
+                                    ng-show="vm.myPhoneNumberIsEditting"></input>
                             </li>
                     </ul>
                 </div>

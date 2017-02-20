@@ -8,9 +8,12 @@ module App.Portfolio {
         title1: string;
         paragraph1: string;
         image: Image = new Image();
+        test: string = "In Process"
 
         title1IsEditting: boolean = false;
         paragraph1IsEditting: boolean = false;
+
+        imageDoneDownloading: boolean = false;
 
         static $inject = [
             '$scope', 
@@ -40,8 +43,10 @@ module App.Portfolio {
             this.myFirebaseRef.aboutPageRef.child('Image').on('value', (snapshot: any) => {
                 this.image = snapshot.val();
                 if(!this.$scope.$$phase){
+                    this.imageDoneDownloading = true;
                     this.$scope.$apply();
                 }
+                this.imageDoneDownloading = true;
             });
         }
 

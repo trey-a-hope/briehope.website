@@ -10,6 +10,8 @@ var App;
                 this.myFirebaseRef = myFirebaseRef;
                 this.modalService = modalService;
                 this.loginService = loginService;
+                this.myEmailIsEditting = false;
+                this.myPhoneNumberIsEditting = false;
                 this.emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 this.sendEmail = function (form) {
                     if (form.$valid) {
@@ -52,18 +54,40 @@ var App;
                         _this.modalService.displayNotification('Must upload a PDF', 'Error', 'OK', false);
                     }
                 };
-                this.editEmail = function () {
+                this.toggleEdit = function (section) {
                     if (_this.loginService.isLoggedIn()) {
-                        alert("Edit Email");
-                    }
-                };
-                this.editPhoneNumber = function () {
-                    if (_this.loginService.isLoggedIn()) {
-                        alert("Edit Phone Number");
+                        switch (section) {
+                            case Section.Email:
+                                if (_this.myEmailIsEditting) {
+                                    _this.myFirebaseRef.contactPageRef.child('Email').set(_this.myEmail);
+                                }
+                                _this.myEmailIsEditting = !_this.myEmailIsEditting;
+                                break;
+                            case Section.PhoneNumber:
+                                if (_this.myPhoneNumberIsEditting) {
+                                    _this.myFirebaseRef.contactPageRef.child('PhoneNumber').set(_this.myPhoneNumber);
+                                }
+                                _this.myPhoneNumberIsEditting = !_this.myPhoneNumberIsEditting;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 };
                 this.myFirebaseRef.contactPageRef.child('Resume').on('value', function (snapshot) {
                     _this.resumeHyperlink = snapshot.val();
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
+                });
+                this.myFirebaseRef.contactPageRef.child('Email').on('value', function (snapshot) {
+                    _this.myEmail = snapshot.val();
+                    if (!_this.$scope.$$phase) {
+                        _this.$scope.$apply();
+                    }
+                });
+                this.myFirebaseRef.contactPageRef.child('PhoneNumber').on('value', function (snapshot) {
+                    _this.myPhoneNumber = snapshot.val();
                     if (!_this.$scope.$$phase) {
                         _this.$scope.$apply();
                     }
@@ -78,6 +102,11 @@ var App;
             ];
             return ContactController;
         })();
+        var Section;
+        (function (Section) {
+            Section[Section["Email"] = 0] = "Email";
+            Section[Section["PhoneNumber"] = 1] = "PhoneNumber";
+        })(Section || (Section = {}));
         angular.module('BrieHope').controller('ContactController', ContactController);
     })(Portfolio = App.Portfolio || (App.Portfolio = {}));
 })(App || (App = {}));

@@ -4,6 +4,10 @@ module App.Portfolio {
     import MyFirebaseRef = App.Services.MyFirebaseRef;
     
     class ContactController {
+        myEmail: string;
+        myPhoneNumber: string;
+        myEmailIsEditting: boolean = false;
+        myPhoneNumberIsEditting: boolean = false;
         /* Input Fields */
         name: string;
         email: string;
@@ -26,6 +30,22 @@ module App.Portfolio {
             /* Get hyperlink to resume. */
             this.myFirebaseRef.contactPageRef.child('Resume').on('value', (snapshot: any) => {
                 this.resumeHyperlink = snapshot.val();
+                /* Refresh UI. */
+                if(!this.$scope.$$phase){
+                    this.$scope.$apply();
+                }
+            });
+            /* Get my email. */
+            this.myFirebaseRef.contactPageRef.child('Email').on('value', (snapshot: any) => {
+                this.myEmail = snapshot.val();
+                /* Refresh UI. */
+                if(!this.$scope.$$phase){
+                    this.$scope.$apply();
+                }
+            });
+            /* Get my phone number. */
+            this.myFirebaseRef.contactPageRef.child('PhoneNumber').on('value', (snapshot: any) => {
+                this.myPhoneNumber = snapshot.val();
                 /* Refresh UI. */
                 if(!this.$scope.$$phase){
                     this.$scope.$apply();
@@ -81,17 +101,32 @@ module App.Portfolio {
             }
         }
 
-        editEmail = (): void => {
+        toggleEdit = (section: number): void => {
             if(this.loginService.isLoggedIn()){
-                alert("Edit Email");
-            }
-        }
-
-        editPhoneNumber = (): void => {
-            if(this.loginService.isLoggedIn()){
-                alert("Edit Phone Number");
+                switch(section) {
+                    case Section.Email:
+                        if(this.myEmailIsEditting){
+                            this.myFirebaseRef.contactPageRef.child('Email').set(this.myEmail);
+                        }
+                        this.myEmailIsEditting = !this.myEmailIsEditting;
+                        break;
+                    case Section.PhoneNumber:
+                        if(this.myPhoneNumberIsEditting){
+                            this.myFirebaseRef.contactPageRef.child('PhoneNumber').set(this.myPhoneNumber);
+                        }
+                        this.myPhoneNumberIsEditting = !this.myPhoneNumberIsEditting;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
+
+    enum Section {
+        Email,
+        PhoneNumber        
+    }
+
     angular.module('BrieHope').controller('ContactController', ContactController);
 }

@@ -11,8 +11,10 @@ var App;
                 this.modalService = modalService;
                 this.loginService = loginService;
                 this.image = new Image();
+                this.test = "In Process";
                 this.title1IsEditting = false;
                 this.paragraph1IsEditting = false;
+                this.imageDoneDownloading = false;
                 this.toggleEdit = function (section) {
                     switch (section) {
                         case Section.Title1:
@@ -63,8 +65,10 @@ var App;
                 this.myFirebaseRef.aboutPageRef.child('Image').on('value', function (snapshot) {
                     _this.image = snapshot.val();
                     if (!_this.$scope.$$phase) {
+                        _this.imageDoneDownloading = true;
                         _this.$scope.$apply();
                     }
+                    _this.imageDoneDownloading = true;
                 });
             }
             AboutController.$inject = [

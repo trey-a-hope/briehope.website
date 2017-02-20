@@ -7,11 +7,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 pull-right" style="margin-top: 20px">
+                <div class="col-lg-4 pull-right" 
+                    style="margin-top: 20px">
                     <img class="img-responsive animated slideInRight"
                         ng-src="{{ vm.image.url }}" 
+                        ng-show="vm.imageDoneDownloading"
                         alt="profileImage"
-                        style="border: white 2px solid"></img>
+                        style="border: white 2px solid">
+                    </img>
                     <input type="file" id="file-chooser" ng-show="vm.loginService.isLoggedIn()" required/>
                     <button class="btn btn-default" 
                         ng-show="vm.loginService.isLoggedIn()" 
