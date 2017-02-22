@@ -11,9 +11,11 @@ var App;
                 this.myFirebaseRef = myFirebaseRef;
                 this.$modal = $modal;
                 this.modalService = modalService;
-                this.images = new Array();
-                this.selectImage = function (image) {
-                    alert(image.name);
+                this.sections = new Array();
+                this.selectImage = function (section) {
+                    _this.$state.go('full-portfolio', {
+                        section: section
+                    });
                 };
                 this.addSection = function () {
                     _this.$modal.open({
@@ -28,11 +30,14 @@ var App;
                         .catch(function (error) {
                     });
                 };
-                this.deleteSection = function (image) {
-                    _this.modalService.displayConfirmation("Are you sure you want to delete the " + image.name + " section?", "Delete", "Yes", false)
+                this.deleteSection = function (section) {
+                    _this.modalService.displayConfirmation("Are you sure you want to delete the " + section.name + " section?", "Delete", "Yes", false)
                         .then(function (result) {
-                        _this.myFirebaseRef.portfolioPageRef.child(image.id).remove();
-                        _this.myFirebaseRef.storageRef.child('PortfolioPage/' + image.id).delete()
+                        _this.myFirebaseRef.portfolioPageRef.child(section.id).remove();
+                        angular.forEach(section.photos, function (photo, index) {
+                            _this.myFirebaseRef.storageRef.child('PortfolioPage/' + photo.id).delete();
+                        });
+                        _this.myFirebaseRef.storageRef.child('PortfolioPage/' + section.id).delete()
                             .then(function (result) {
                             _this.modalService.displayNotification("Section deleted successfully.", "Success", "OK", true);
                         })
@@ -46,7 +51,7 @@ var App;
                     });
                 };
                 this.myFirebaseRef.portfolioPageRef.on('value', function (snapshot) {
-                    _this.images = snapshot.val();
+                    _this.sections = snapshot.val();
                     if (!_this.$scope.$$phase) {
                         _this.$scope.$apply();
                     }

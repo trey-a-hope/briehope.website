@@ -17,6 +17,15 @@ var Routing;
                 controller: 'PortfolioController',
                 controllerAs: 'vm'
             });
+            this.$stateProvider.state('full-portfolio', {
+                url: '/full-portfolio',
+                templateUrl: 'app/portfolio/FullPortfolio.html',
+                controller: 'FullPortfolioController',
+                controllerAs: 'vm',
+                params: {
+                    section: null
+                }
+            });
             this.$stateProvider.state('about', {
                 url: '/about',
                 templateUrl: 'app/about/About.html',

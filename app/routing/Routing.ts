@@ -20,6 +20,17 @@ module Routing {
                 controllerAs:   'vm'
             });
 
+            /* Full Portfolio */
+            this.$stateProvider.state('full-portfolio', {
+                url:            '/full-portfolio',
+                templateUrl:    'app/portfolio/FullPortfolio.html',
+                controller:     'FullPortfolioController',
+                controllerAs:   'vm',
+                params: {
+                    section: null
+                }
+            });
+
             /* About */
             this.$stateProvider.state('about', {
                 url:            '/about',

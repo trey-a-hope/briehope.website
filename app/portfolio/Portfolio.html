@@ -7,16 +7,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4 portfolio-item" ng-repeat="image in vm.images">
-                    <div class="portfolio-link cursor-pointer portfolio-image gallery-item animated bounceIn" ng-click="vm.selectImage(image)">
-                        <div style="padding-top: 20px"></div>
-                        <img ng-src="{{ image.url }}" class="img-responsive" alt="">
-                        </img>
-                            <h2 class="portfolio-h2">
-                                <span style="padding:0 5px;">{{ image.name }}
-                                </span>
-                            </h2>
-                    </div>
+                <div class="col-sm-4 portfolio-item" ng-repeat="image in vm.sections">
+                    <a class="portfolio-box" href="" ng-click="vm.selectImage(image)">
+                        <img class="img-responsive" ng-src="{{ image.url }}"></img>
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category">{{ image.name }}</div>
+                                <div class="project-name">{{ image.subText }}</div>
+                            </div>
+                        </div>
+                    </a>
                     <br/>
                     <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteSection(image)"><i class="fa fa-fw fa-close" style="color: red"></i></span>
                 </div>

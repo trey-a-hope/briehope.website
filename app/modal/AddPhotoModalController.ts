@@ -2,15 +2,16 @@ module App.Modal {
     import Image = App.Models.Image;
     import MyFirebaseRef = App.Services.MyFirebaseRef;
 
-    class AddSectionModalController {
-        image = new Image(); 
+    class AddPhotoModalController {
+        photo: Image = new Image();
 
         static $inject = [
             '$scope',
             '$modalInstance',
-            'MyFirebaseRef'
+            'MyFirebaseRef',
+            'section'
         ];
-        constructor(public $scope: any, public $modalInstance: angular.ui.bootstrap.IModalServiceInstance, public myFirebaseRef: MyFirebaseRef) {
+        constructor(public $scope: any, public $modalInstance: angular.ui.bootstrap.IModalServiceInstance, public myFirebaseRef: MyFirebaseRef, public section: Image) {
         }
 
         save = (): void => {
@@ -18,19 +19,18 @@ module App.Modal {
             var file = fileChooser.files[0]; 
 
             //Get reference to new insertion of camp.
-            var newpostref = this.myFirebaseRef.portfolioPageRef.push().key; 
-            this.image.id = newpostref;
+            var newpostref = this.myFirebaseRef.portfolioPageRef.child(this.section.id + '/photos').push().key; 
+            this.photo.id = newpostref;
 
             if (file) {
-                var uploadTask = this.myFirebaseRef.storageRef.child("PortfolioPage/" + this.image.id).put(file);
+                var uploadTask = this.myFirebaseRef.storageRef.child("PortfolioPage/" + this.photo.id).put(file);
                 uploadTask.on('state_changed', 
                     (snapshot: any) => {
                     }, (error: any) => {
-                        //TODO:
                     }, (success: any) => {
                         var downloadURL = uploadTask.snapshot.downloadURL;
-                        this.image.url = downloadURL;
-                        this.myFirebaseRef.portfolioPageRef.child(this.image.id).update(this.image);
+                        this.photo.url = downloadURL;
+                        this.myFirebaseRef.portfolioPageRef.child(this.section.id + '/photos/' + this.photo.id).update(this.photo);
                         this.$modalInstance.close();
                     });
             }
@@ -44,5 +44,5 @@ module App.Modal {
         }
 
     }
-    angular.module('BrieHope').controller('AddSectionModalController', AddSectionModalController);
+    angular.module('BrieHope').controller('AddPhotoModalController', AddPhotoModalController);
 } 
