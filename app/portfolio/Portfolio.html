@@ -18,7 +18,12 @@
                         </div>
                     </a>
                     <br/>
-                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteSection(image)"><i class="fa fa-fw fa-close" style="color: red"></i></span>
+                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteSection(image)">
+                        <i class="fa fa-fw fa-close" style="color: red"></i>
+                    </span>
+                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Edit ' + image.name }}" ng-click="vm.editSection(image)">
+                        <i class="fa fa-fw fa-pencil" style="color: yellow"></i>
+                    </span>
                 </div>
             </div>
             <div class="row">

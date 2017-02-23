@@ -22,6 +22,36 @@ var App;
                         resolve: {
                             section: function () {
                                 return _this.section;
+                            },
+                            isEdit: function () {
+                                return false;
+                            },
+                            photo: function () {
+                                return null;
+                            }
+                        }
+                    }).result
+                        .then(function (result) {
+                        _this.modalService.displayNotification("Your photo has been uploaded.", "Success", "OK", true);
+                    })
+                        .catch(function (error) {
+                    });
+                };
+                this.editImage = function (photo) {
+                    _this.$modal.open({
+                        templateUrl: 'app/modal/AddPhotoModalTemplate.html',
+                        controller: 'AddPhotoModalController as vm',
+                        size: 'md',
+                        backdrop: 'static',
+                        resolve: {
+                            section: function () {
+                                return _this.section;
+                            },
+                            isEdit: function () {
+                                return true;
+                            },
+                            photo: function () {
+                                return photo;
                             }
                         }
                     }).result

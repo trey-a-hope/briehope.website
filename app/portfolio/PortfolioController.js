@@ -22,7 +22,15 @@ var App;
                         templateUrl: 'app/modal/AddSectionModalTemplate.html',
                         controller: 'AddSectionModalController as vm',
                         size: 'md',
-                        backdrop: 'static'
+                        backdrop: 'static',
+                        resolve: {
+                            isEdit: function () {
+                                return false;
+                            },
+                            section: function () {
+                                return null;
+                            }
+                        }
                     }).result
                         .then(function (result) {
                         _this.modalService.displayNotification("Your section has been uploaded.", "Success", "OK", true);
@@ -48,6 +56,27 @@ var App;
                         .catch(function (error) {
                     })
                         .finally(function () {
+                    });
+                };
+                this.editSection = function (section) {
+                    _this.$modal.open({
+                        templateUrl: 'app/modal/AddSectionModalTemplate.html',
+                        controller: 'AddSectionModalController as vm',
+                        size: 'md',
+                        backdrop: 'static',
+                        resolve: {
+                            isEdit: function () {
+                                return true;
+                            },
+                            section: function () {
+                                return section;
+                            }
+                        }
+                    }).result
+                        .then(function (result) {
+                        _this.modalService.displayNotification("Your section has been uploaded.", "Success", "OK", true);
+                    })
+                        .catch(function (error) {
                     });
                 };
                 this.myFirebaseRef.portfolioPageRef.on('value', function (snapshot) {

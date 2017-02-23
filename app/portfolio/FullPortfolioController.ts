@@ -39,8 +39,39 @@ module App.Portfolio {
                 size: 'md',
                 backdrop: 'static',
                 resolve: {
-                    section: () => {
+                    section: (): Image => {
                         return this.section;
+                    },
+                    isEdit: (): boolean => {
+                        return false;
+                    },
+                    photo: (): Image => {
+                        return null;
+                    }
+                }
+            }).result
+                .then((result: any) =>{
+                    this.modalService.displayNotification("Your photo has been uploaded.", "Success", "OK", true);
+                })
+                .catch((error: any) =>{
+                });
+        }
+
+        editImage = (photo: Image): void => {
+            this.$modal.open({
+                templateUrl: 'app/modal/AddPhotoModalTemplate.html',
+                controller: 'AddPhotoModalController as vm',
+                size: 'md',
+                backdrop: 'static',
+                resolve: {
+                    section: (): Image => {
+                        return this.section;
+                    },
+                    isEdit: (): boolean => {
+                        return true;
+                    },
+                    photo: (): Image => {
+                        return photo;
                     }
                 }
             }).result

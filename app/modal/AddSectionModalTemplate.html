@@ -1,14 +1,15 @@
 <div class="modal-header">
-    <h3 class="modal-title text-center">Add Section</h3>
+    <h3 class="modal-title text-center">{{ vm.isEdit ? 'Edit' : 'Add' }} Section</h3>
 </div>
 <div class="modal-body">
     <input type="text" class="form-control" ng-model="vm.image.name" placeholder="Name">
     <input type="text" class="form-control" ng-model="vm.image.subText" placeholder="Sub Title">
+    <img ng-src="{{ vm.image.url }}" style="height: 100px"></img>
     <input type="file" id="file-chooser" required/>
 </div>
 <div class="modal-footer">
     <div class="col-xs-2 pull-right">
-        <button class="btn btn-info width-full" ng-click="vm.save()">Save</button>
+        <button class="btn btn-info width-full" ng-click="vm.isEdit ? vm.update() : vm.save()">{{ vm.isEdit ? 'Update' : 'Save' }}</button>
     </div>
     <div class="col-xs-2 pull-right">
         <button class="btn btn-info width-full" ng-click="vm.cancel()">Cancel</button>

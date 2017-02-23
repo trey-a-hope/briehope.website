@@ -13,7 +13,12 @@
                     <h1>{{ image.name }}</h1>
                     <h4>{{ image.subText }}</h1>
                     <br/>
-                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteImage(image)"><i class="fa fa-fw fa-close" style="color: red"></i></span>
+                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Delete ' + image.name }}" ng-click="vm.deleteImage(image)">
+                        <i class="fa fa-fw fa-close" style="color: red"></i>
+                    </span>
+                    <span class="cursor-pointer" ng-show="vm.loginService.isLoggedIn()" tooltips tooltip-template="{{ 'Edit ' + image.name }}" ng-click="vm.editImage(image)">
+                        <i class="fa fa-fw fa-pencil" style="color: yellow"></i>
+                    </span>
                 </div>
             </div>
             <div class="row">

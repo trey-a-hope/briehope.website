@@ -36,7 +36,15 @@ module App.Portfolio {
                 templateUrl: 'app/modal/AddSectionModalTemplate.html',
                 controller: 'AddSectionModalController as vm',
                 size: 'md',
-                backdrop: 'static'
+                backdrop: 'static',
+                resolve: {
+                    isEdit: (): boolean => {
+                        return false;
+                    },
+                    section: (): Image => {
+                        return null;
+                    }
+                }
             }).result
                 .then((result: any) =>{
                     this.modalService.displayNotification("Your section has been uploaded.", "Success", "OK", true);
@@ -65,6 +73,28 @@ module App.Portfolio {
                 })
                 .finally(() => {
 
+                });
+        }
+
+        editSection = (section: Image): void => {
+            this.$modal.open({
+                templateUrl: 'app/modal/AddSectionModalTemplate.html',
+                controller: 'AddSectionModalController as vm',
+                size: 'md',
+                backdrop: 'static',
+                resolve: {
+                    isEdit: (): boolean => {
+                        return true;
+                    },
+                    section: (): Image => {
+                        return section;
+                    }
+                }
+            }).result
+                .then((result: any) =>{
+                    this.modalService.displayNotification("Your section has been uploaded.", "Success", "OK", true);
+                })
+                .catch((error: any) =>{
                 });
         }
     }
