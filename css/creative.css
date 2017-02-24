@@ -128,6 +128,12 @@ aside {
   background-color: transparent;
 }
 
+@media (min-width: 890px) {
+  .big-screen-landing {
+    width: 90% !important;
+  }
+}
+
 @media (min-width: 768px) {
   .navbar-default {
     background-color: transparent;
