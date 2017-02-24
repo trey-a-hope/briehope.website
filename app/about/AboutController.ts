@@ -39,6 +39,7 @@ module App.Portfolio {
                     this.$scope.$apply();
                 }
             });
+            
             /* Image */
             this.myFirebaseRef.aboutPageRef.child('Image').on('value', (snapshot: any) => {
                 this.image = snapshot.val();

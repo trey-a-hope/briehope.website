@@ -46,6 +46,21 @@ var App;
                         _this.modalService.displayNotification("Your passcode has been udpated.", "Success", "OK", true);
                     }
                 };
+                this.uploadBackgroundImage = function () {
+                    var fileChooser = document.getElementById('file-chooser');
+                    var file = fileChooser.files[0];
+                    if (file) {
+                        var uploadTask = _this.myFirebaseRef.storageRef.child("MainContainer/BackgroundPicture").put(file);
+                        uploadTask.on('state_changed', function (snapshot) { }, function (error) { }, function (success) {
+                            var downloadURL = uploadTask.snapshot.downloadURL;
+                            _this.myFirebaseRef.mainContRef.child('BackgroundPicture').set(downloadURL);
+                            _this.modalService.displayNotification('Image uploaded successfully.', "Success", "OK", true);
+                        });
+                    }
+                    else {
+                        _this.modalService.displayNotification("Must select picture first.", "Error", "OK", false);
+                    }
+                };
                 this.myFirebaseRef.landingPageRef.child('Title').on('value', function (snapshot) {
                     _this.title = snapshot.val();
                     if (!_this.$scope.$$phase) {

@@ -83,10 +83,30 @@ module App.Landing {
             }
         }
 
-        updatePasscode = (): void =>{
+        updatePasscode = (): void => {
             if(this.passcode != null && this.passcode.length > 0){
                 this.myFirebaseRef.loginPageRef.child("Passcode").set(this.passcode);
                 this.modalService.displayNotification("Your passcode has been udpated.", "Success", "OK", true);
+            }
+        }
+
+        uploadBackgroundImage = (): void => {
+            var fileChooser: any = document.getElementById('file-chooser');     
+            var file = fileChooser.files[0]; 
+
+            if (file) {
+                var uploadTask = this.myFirebaseRef.storageRef.child("MainContainer/BackgroundPicture").put(file);
+                uploadTask.on('state_changed', 
+                    (snapshot: any) => {}, 
+                    (error: any) => {}, 
+                    (success: any) => {
+                        var downloadURL = uploadTask.snapshot.downloadURL;
+                        this.myFirebaseRef.mainContRef.child('BackgroundPicture').set(downloadURL);
+                        this.modalService.displayNotification('Image uploaded successfully.', "Success", "OK", true);
+                    });
+            }
+            else {
+                this.modalService.displayNotification("Must select picture first.", "Error", "OK", false);
             }
         }
         
