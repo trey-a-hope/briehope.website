@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">
+        Errors
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="alert alert-danger">
+        <p ng-repeat="error in vm.errors">{{ error }}</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-xs-2 pull-right">
+        <button class="btn btn-info width-full" 
+            ng-click="vm.acknowledge()">
+            OK
+        </button>
+    </div>
+</div>

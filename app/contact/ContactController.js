@@ -12,8 +12,11 @@ var App;
                 this.loginService = loginService;
                 this.myEmailIsEditting = false;
                 this.myPhoneNumberIsEditting = false;
+                this.phoneNumberRegex = /^\d{10}$/;
                 this.emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                this.attemptedSend = false;
                 this.sendEmail = function (form) {
+                    _this.attemptedSend = true;
                     if (form.$valid) {
                         var data = {
                             name: _this.name,
@@ -33,7 +36,14 @@ var App;
                         });
                     }
                     else {
-                        _this.modalService.displayNotification('Some fields are incorrect/empty.', 'Error', 'OK', false);
+                        var errors = [];
+                        angular.forEach(form.$error.required, function (error, index) {
+                            errors.push(error.$name + " is required");
+                        });
+                        angular.forEach(form.$error.pattern, function (error, index) {
+                            errors.push(error.$name + " is not formatted correctly");
+                        });
+                        _this.modalService.displayErrors(errors);
                     }
                 };
                 this.uploadPDF = function () {

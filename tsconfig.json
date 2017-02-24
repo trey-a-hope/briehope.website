@@ -20,6 +20,7 @@
         "app/modal/AddPhotoModalController.ts",
         "app/modal/DisplayNotificationModalController.ts",
         "app/modal/DisplayConfirmationModalController.ts",
+        "app/modal/DisplayErrorsModalController.ts",
         "app/models/Image.ts",
         "app/modules/BrieHope.ts",
         "app/routing/Routing.ts",

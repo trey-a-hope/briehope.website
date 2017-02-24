@@ -56,6 +56,19 @@ var App;
                     });
                     return deferred.promise;
                 };
+                this.displayErrors = function (errors) {
+                    _this.$modal.open({
+                        templateUrl: 'app/modal/DisplayErrorsModalTemplate.html',
+                        controller: 'DisplayErrorsModalController as vm',
+                        size: 'md',
+                        backdrop: 'static',
+                        resolve: {
+                            errors: function () {
+                                return errors;
+                            }
+                        }
+                    });
+                };
             }
             ModalService.$inject = [
                 '$modal',

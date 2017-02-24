@@ -59,6 +59,20 @@ module App.Services {
 
            return deferred.promise;
        }
+
+       displayErrors = (errors: Array<string>) => {
+            this.$modal.open({
+                templateUrl: 'app/modal/DisplayErrorsModalTemplate.html',
+                controller: 'DisplayErrorsModalController as vm',
+                size: 'md',
+                backdrop: 'static',
+                resolve: {
+                    errors: () => {
+                        return errors;
+                    }
+                }
+            });
+        }
     }
 
     angular.module('BrieHope').service('ModalService', ModalService);

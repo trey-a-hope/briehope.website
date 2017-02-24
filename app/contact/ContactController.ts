@@ -16,8 +16,9 @@ module App.Portfolio {
         /* Links */
         resumeHyperlink: string;
         /* Regex */
-        phoneNumberRegex: string;
+        phoneNumberRegex: RegExp = /^\d{10}$/;
         emailRegex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        attemptedSend: boolean = false;
 
         static $inject = [
             '$scope', 
@@ -54,6 +55,7 @@ module App.Portfolio {
         }
 
         sendEmail = (form: any): void =>{
+            this.attemptedSend = true;
             if(form.$valid)
             {
                 var data = {
@@ -76,9 +78,17 @@ module App.Portfolio {
             }
             else
             {
-                this.modalService.displayNotification('Some fields are incorrect/empty.', 'Error', 'OK', false);
+                var errors: Array<string> = [];
+                /* Get required errors. */
+                angular.forEach(form.$error.required, (error: any, index: number) => {
+                    errors.push(error.$name + " is required");
+                });
+                /* Get pattern errors. */
+                angular.forEach(form.$error.pattern, (error: any, index: number) => {
+                    errors.push(error.$name + " is not formatted correctly");
+                });
+                this.modalService.displayErrors(errors);
             }
-
         }
 
         uploadPDF = (): void =>{
