@@ -28,7 +28,7 @@ a {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  color: #4caf50;
+  color: darkolivegreen;
 }
 
 a:hover,
@@ -109,7 +109,7 @@ aside {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 13px;
-  color: #222222;
+  color: white;
 }
 
 .navbar-default .nav>li>a:hover,
