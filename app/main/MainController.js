@@ -8,7 +8,11 @@ var App;
                 this.$scope = $scope;
                 this.$state = $state;
                 this.myFirebaseRef = myFirebaseRef;
-                this.getStyle = function () { return { background: 'url(' + _this.backgroundImageUrl + ')' }; };
+                this.getStyle = function () {
+                    return {
+                        background: 'url(' + _this.backgroundImageUrl + ') no-repeat center center fixed'
+                    };
+                };
                 this.myFirebaseRef.mainContRef.child('BackgroundPicture').on('value', function (snapshot) {
                     _this.backgroundImageUrl = snapshot.val();
                     if (!_this.$scope.$$phase) {

@@ -28,12 +28,13 @@ a {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  color: darkolivegreen;
+  color: white;
 }
 
 a:hover,
 a:focus {
-  color: #a5d6a7;
+  color: lightgrey;
+  text-decoration-line: none;
 }
 
 h1,
@@ -185,7 +186,6 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  /*background-image: url('../img/header.jpg');*/
   text-align: center;
   color: white;
 }

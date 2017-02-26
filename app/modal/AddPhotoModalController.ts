@@ -35,7 +35,7 @@ module App.Modal {
             var newpostref = this.myFirebaseRef.portfolioPageRef.child(this.section.id + '/photos').push().key; 
             this.photo.id = newpostref;
 
-            if (this.photo.name && this.photo.subText && file) {
+            if ((this.photo.name || this.photo.subText) && file) {
                 var uploadTask = this.myFirebaseRef.storageRef.child("PortfolioPage/" + this.photo.id).put(file);
                 uploadTask.on('state_changed', 
                     (snapshot: any) => {
@@ -56,7 +56,7 @@ module App.Modal {
             var fileChooser: any = document.getElementById('file-chooser');     
             var file = fileChooser.files[0]; 
 
-            if(this.photo.name && this.photo.subText){
+            if(this.photo.name || this.photo.subText){
                 if(file){
                     var uploadTask = this.myFirebaseRef.storageRef.child("PortfolioPage/" + this.photo.id).put(file);
                     uploadTask.on('state_changed', 

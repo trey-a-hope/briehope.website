@@ -19,7 +19,7 @@ var App;
                     var file = fileChooser.files[0];
                     var newpostref = _this.myFirebaseRef.portfolioPageRef.child(_this.section.id + '/photos').push().key;
                     _this.photo.id = newpostref;
-                    if (_this.photo.name && _this.photo.subText && file) {
+                    if ((_this.photo.name || _this.photo.subText) && file) {
                         var uploadTask = _this.myFirebaseRef.storageRef.child("PortfolioPage/" + _this.photo.id).put(file);
                         uploadTask.on('state_changed', function (snapshot) {
                         }, function (error) {
@@ -37,7 +37,7 @@ var App;
                 this.update = function () {
                     var fileChooser = document.getElementById('file-chooser');
                     var file = fileChooser.files[0];
-                    if (_this.photo.name && _this.photo.subText) {
+                    if (_this.photo.name || _this.photo.subText) {
                         if (file) {
                             var uploadTask = _this.myFirebaseRef.storageRef.child("PortfolioPage/" + _this.photo.id).put(file);
                             uploadTask.on('state_changed', function (snapshot) {

@@ -51,7 +51,7 @@ var App;
                                 return true;
                             },
                             photo: function () {
-                                return photo;
+                                return angular.copy(photo);
                             }
                         }
                     }).result

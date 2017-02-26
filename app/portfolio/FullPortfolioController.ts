@@ -71,7 +71,7 @@ module App.Portfolio {
                         return true;
                     },
                     photo: (): Image => {
-                        return photo;
+                        return angular.copy(photo);
                     }
                 }
             }).result

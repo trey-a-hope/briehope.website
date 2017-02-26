@@ -26,8 +26,11 @@ module App.Main {
             });
         }
 
-        getStyle = (): any => { return { background: 'url(' + this.backgroundImageUrl + ')' } ; }
-
+        getStyle = (): any => { 
+            return { 
+                background: 'url(' + this.backgroundImageUrl + ') no-repeat center center fixed'  
+            }; 
+        }
     }
 
     angular.module('BrieHope').controller('MainController', MainController);

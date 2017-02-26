@@ -29,7 +29,7 @@ module App.Modal {
             var fileChooser: any = document.getElementById('file-chooser');     
             var file = fileChooser.files[0]; 
 
-            if(this.image.name && this.image.subText){
+            if(this.image.name || this.image.subText){
                 if(file){
                     var uploadTask = this.myFirebaseRef.storageRef.child("PortfolioPage/" + this.image.id).put(file);
                     uploadTask.on('state_changed', 
@@ -59,12 +59,11 @@ module App.Modal {
             var newpostref = this.myFirebaseRef.portfolioPageRef.push().key; 
             this.image.id = newpostref;
 
-            if (this.image.name && this.image.subText && file) {
+            if ((this.image.name || this.image.subText) && file) {
                 var uploadTask = this.myFirebaseRef.storageRef.child("PortfolioPage/" + this.image.id).put(file);
                 uploadTask.on('state_changed', 
                     (snapshot: any) => {
                     }, (error: any) => {
-                        //TODO:
                     }, (success: any) => {
                         var downloadURL = uploadTask.snapshot.downloadURL;
                         this.image.url = downloadURL;

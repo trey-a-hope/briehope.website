@@ -69,7 +69,7 @@ var App;
                                 return true;
                             },
                             section: function () {
-                                return section;
+                                return angular.copy(section);
                             }
                         }
                     }).result
